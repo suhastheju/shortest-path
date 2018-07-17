@@ -29,7 +29,7 @@ Check 'Makefile' for building the software.
 
 arguments:
     -in  : input file in DIMACS format
-           reads input from standard input if the argument is not specified
+           reads from standard input if the argument is not specified
     -src : source vertex
     -dst : destination vertex
            -1, to report shortest path to all vertices
@@ -73,6 +73,8 @@ memory (An Apple macbook pro laptop). The graph preprocessing time (graph read
 and initialisation) is less than ten seconds.
 
 ```
+$ ../graph-gen/graph-gen regular 1000000 20 100 1234 | ./shortest-path-perf -src 1 -dst 100
+
 invoked as: ../graph-gen/graph-gen regular 1000000 20 100 1234
 invoked as: ./shortest-path-perf -src 1 -dst 100
 Input file not specified, redirecting to standard input stream
