@@ -67,10 +67,37 @@ eof
 
 ## Performance
 The implementation can find a shortest path in a 20-regular one-million vertex
-edge-weighted graph (ten million edges) in less than one second using a single
+edge-weighted graph (ten million edges) in less than two seconds using a single
 core of an Intel(R) Core(TM) i7-7660U CPU @ 2.50GHz processor and 16GiB of main
 memory (An Apple macbook pro laptop). The graph preprocessing time (graph read
-and initialisation) is approximately eight seconds.
+and initialisation) is less than ten seconds.
+
+```
+invoked as: ../graph-gen/graph-gen regular 1000000 20 100 1234
+invoked as: ./shortest-path-perf -src 1 -dst 100
+Input file not specified, redirecting to standard input stream
+gen-unique [regular]: n = 1000000, m = 10000000, seed = 1234
+input: n = 1000000, m = 10000000 [8305.68ms] {peak: 0.22GiB} {curr: 0.15GiB}
+root build: [zero: 0.16ms] [pos: 71.77ms] [adj: 2081.41ms] done. [2153.41ms] {peak: 0.31GiB} {curr: 0.31GiB}
+dijkstra: [init: 11.48ms] [visit: 1265.98ms] [1254.49ms]
+
+tracepath: [source: 1] [destination: 100] [cost: 69]
+E 100 704842
+E 704842 113871
+E 113871 353568
+E 353568 977365
+E 977365 589807
+E 589807 486424
+E 486424 188775
+E 188775 565251
+E 565251 1
+
+dijkstra-query: [query: 1266.33ms 0.56GiB/s] [trace: 0.03ms] [1266.39ms] {peak: 0.18GiB} {curr: 0.18GiB}
+grand total [11740.87ms] {peak: 0.31GiB}
+host: maagha
+build: single thread, binary heap
+compiler: gcc 7.3.0
+```
 
 ## Bug-fixes and support
 Mail me at suhas.muniyappa@aalto.fi
