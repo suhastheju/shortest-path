@@ -36,7 +36,7 @@ arguments:
 
 Example output:
 ./shortest-path -in input.gr -src 1 -dst 5
-\[source: 1\] \[destination: 5\] \[cost: 24\]
+[source: 1] [destination: 5] [cost: 24]
 E 5 2
 E 2 10
 E 10 9
@@ -71,3 +71,6 @@ edge-weighted graph (ten million edges) in less than one second using a single
 core of an Intel(R) Core(TM) i7-7660U CPU @ 2.50GHz processor and 16GiB of main
 memory (An Apple macbook pro laptop). The graph preprocessing time (graph read
 and initialisation) is approximately eight seconds.
+
+## Bug-fixes and support
+Mail me at suhas.muniyappa@aalto.fi
