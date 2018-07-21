@@ -67,11 +67,15 @@ eof
 
 ## Performance
 The implementation can find a shortest path in a 20-regular one-million vertex
-edge-weighted graph (ten million edges) in less than two seconds using a single
+edge-weighted graph (ten million edges) in less than one second using a single
 core of an Intel(R) Core(TM) i7-7660U CPU @ 2.50GHz processor and 16GiB of main
-memory (An Apple macbook pro laptop). The graph preprocessing time (graph read
-and initialisation) is less than ten seconds.
+memory (An Apple macbook pro laptop). For dense graphs the performance is even 
+better, for example it takes less than 70 milliseconds to find a shortest path 
+in a two-thousand-regular ten-thousand vertex edge-weighted graph (ten million 
+edges). The graph preprocessing time (graph read and initialisation) is less 
+than ten seconds.
 
+### Sparse graphs
 ```
 $ ../graph-gen/graph-gen regular 1000000 20 100 1234 | ./shortest-path-perf -src 1 -dst 100
 
@@ -79,9 +83,9 @@ invoked as: ../graph-gen/graph-gen regular 1000000 20 100 1234
 invoked as: ./shortest-path-perf -src 1 -dst 100
 Input file not specified, redirecting to standard input stream
 gen-unique [regular]: n = 1000000, m = 10000000, seed = 1234
-input: n = 1000000, m = 10000000 [8305.68ms] {peak: 0.22GiB} {curr: 0.15GiB}
-root build: [zero: 0.16ms] [pos: 71.77ms] [adj: 2081.41ms] done. [2153.41ms] {peak: 0.31GiB} {curr: 0.31GiB}
-dijkstra: [init: 11.48ms] [visit: 1265.98ms] [1254.49ms]
+input: n = 1000000, m = 10000000 [8126.07ms] {peak: 0.22GiB} {curr: 0.15GiB}
+root build: [zero: 0.15ms] [pos: 58.55ms] [adj: 1984.37ms] done. [2043.12ms] {peak: 0.31GiB} {curr: 0.31GiB}
+dijkstra: [init: 11.61ms] [visit: 962.51ms] [950.89ms]
 
 tracepath: [source: 1] [destination: 100] [cost: 69]
 E 100 704842
@@ -94,8 +98,31 @@ E 486424 188775
 E 188775 565251
 E 565251 1
 
-dijkstra-query: [query: 1266.33ms 0.56GiB/s] [trace: 0.03ms] [1266.39ms] {peak: 0.18GiB} {curr: 0.18GiB}
-grand total [11740.87ms] {peak: 0.31GiB}
+dijkstra-query: [query: 962.82ms 0.74GiB/s] [trace: 0.03ms] [962.86ms] {peak: 0.18GiB} {curr: 0.18GiB}
+grand total [11145.96ms] {peak: 0.31GiB}
+host: maagha
+build: single thread, binary heap
+compiler: gcc 7.3.0
+```
+
+### Dense graphs
+```
+$ ../graph-gen/graph-gen regular 10000 2000 100 1234 | ./shortest-path-perf -src 1 -dst 100
+invoked as: ../graph-gen/graph-gen regular 10000 2000 100 1234
+invoked as: ./shortest-path-perf -src 1 -dst 100
+Input file not specified, redirecting to standard input stream
+gen-unique [regular]: n = 10000, m = 10000000, seed = 1234
+input: n = 10000, m = 10000000 [7275.85ms] {peak: 0.22GiB} {curr: 0.15GiB}
+root build: [zero: 0.01ms] [pos: 12.18ms] [adj: 620.70ms] done. [632.92ms] {peak: 0.30GiB} {curr: 0.30GiB}
+dijkstra: [init: 0.11ms] [visit: 67.21ms] [67.09ms]
+
+tracepath: [source: 1] [destination: 100] [cost: 3]
+E 100 4846
+E 4846 3608
+E 3608 1
+
+dijkstra-query: [query: 67.22ms 3.37GiB/s] [trace: 0.03ms] [67.26ms] {peak: 0.15GiB} {curr: 0.15GiB}
+grand total [7988.76ms] {peak: 0.30GiB}
 host: maagha
 build: single thread, binary heap
 compiler: gcc 7.3.0
