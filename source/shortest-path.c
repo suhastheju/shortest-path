@@ -444,7 +444,7 @@ graph_t * graph_load(FILE *in)
 
 /******************************************************** Root query builder. */
 
-typedef struct steinerq
+typedef struct dijkstraq
 {
     index_t  n;
     index_t  m;
@@ -615,7 +615,7 @@ void print_graph(graph_t *g)
 
 void print_dijkstra_t(dijkstra_t *root)
 {
-    fprintf(stdout, "steinerq_t: \n");
+    fprintf(stdout, "dijkstraq_t: \n");
     fprintf(stdout, "n: %d\n", root->n);
     fprintf(stdout, "m: %d\n", root->m);
     index_t *pos = root->pos;
