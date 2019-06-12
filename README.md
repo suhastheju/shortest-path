@@ -132,7 +132,7 @@ compiler: gcc 7.3.0
 For bug fixes and support, mail me at suhas.thejaswi@aalto.fi
 
 ## Citation
-If you find our implementation useful. we encourage to cite our work. You
+We encourage you to cite our work if you find this implementation useful. You
 can use the following bibtex:
 
 ```
