@@ -128,5 +128,19 @@ build: single thread, binary heap
 compiler: gcc 7.3.0
 ```
 
-## Bug-fixes and support
-Mail me at suhas.muniyappa@aalto.fi
+## Bug-report
+For bug fixes and support, mail me at suhas.thejaswi@aalto.fi
+
+## Citation
+If you find our implementation useful. we encourage to cite our work. You
+can use the following bibtex:
+
+```
+@mastersthesis{dijkstra-implementation,
+title={Scalable Parameterised Algorithms for two Steiner Problems},
+author={Thejaswi, Suhas},
+year={2017},
+pages={104 + 8},
+url={http://urn.fi/URN:NBN:fi:aalto-201709046839},
+}
+```
